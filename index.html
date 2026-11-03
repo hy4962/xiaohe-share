@@ -126,66 +126,44 @@
     font-size: clamp(15px, 2.2vw, 17px);
     color: var(--ink-soft);
     max-width: 520px;
-    margin-bottom: 44px;
+    margin-bottom: 34px;
   }
 
-  /* ── 高亮备案号（重点）── */
-  .icp {
-    position: relative;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 22px;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 55%, #ff8a5c 100%);
-    box-shadow: 0 18px 44px -18px rgba(255, 90, 60, .55);
-    transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s;
-  }
-  .icp:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 26px 56px -18px rgba(255, 90, 60, .65);
-  }
-  .icp-inner {
-    background: #fffdfb;
-    border-radius: 20px;
-    padding: 30px 32px;
+  /* ── 备案信息条 ── */
+  .icp-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+    padding: 13px 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .2s ease;
   }
-  .icp-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .icp-num {
-    font-size: clamp(24px, 5vw, 40px);
-    font-weight: 800;
-    letter-spacing: -.01em;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-  .icp-note {
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    margin-top: 10px;
-  }
-  .icp-badge {
+  .icp-bar:hover { border-color: rgba(255, 90, 60, .4); }
+  .icp-bar .lbl {
     flex-shrink: 0;
-    width: 62px; height: 62px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #fff;
-    font-size: 26px;
-    box-shadow: 0 10px 24px -8px rgba(255, 90, 60, .7);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--accent);
+    padding-right: 14px;
+    border-right: 1px solid var(--line);
+  }
+  .icp-bar .num {
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .01em;
+  }
+  .icp-bar .go {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-soft);
+    white-space: nowrap;
   }
 
   /* ── 卡片区 ── */
@@ -193,7 +171,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 14px;
-    margin-top: 44px;
+    margin-top: 0;
   }
   .card {
     background: var(--card);
@@ -235,10 +213,11 @@
   footer .f-icp { font-variant-numeric: tabular-nums; }
 
   @media (max-width: 560px) {
-    .icp-inner { padding: 24px 22px; }
-    .icp-badge { width: 52px; height: 52px; font-size: 22px; }
+    .icp-bar { flex-wrap: wrap; gap: 8px 12px; padding: 12px 14px; }
+    .icp-bar .lbl { border-right: none; padding-right: 0; }
+    .icp-bar .go { display: none; }
     main { padding: 40px 0 32px; }
-    .lede { margin-bottom: 34px; }
+    .lede { margin-bottom: 26px; }
   }
 </style>
 </head>
@@ -254,17 +233,6 @@
       <p class="lede">
         这里是小H的小小角落 —— 记录日常、随手拍、折腾笔记，还有一些没什么用但很快乐的事。
       </p>
-
-      <a class="icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-        <div class="icp-inner">
-          <div>
-            <div class="icp-label">网站备案号</div>
-            <div class="icp-num">粤ICP备2026130309号-2</div>
-            <div class="icp-note">工业和信息化部 ICP/IP地址/域名信息备案管理系统</div>
-          </div>
-          <div class="icp-badge">✓</div>
-        </div>
-      </a>
 
       <div class="grid">
         <div class="card">
@@ -288,6 +256,12 @@
           <p>没什么用，但很想说出来的那些话。</p>
         </div>
       </div>
+
+      <a class="icp-bar" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+        <span class="lbl">备案</span>
+        <span class="num">粤ICP备2026130309号-2</span>
+        <span class="go">工信部备案系统 ↗</span>
+      </a>
     </main>
   </div>
 
