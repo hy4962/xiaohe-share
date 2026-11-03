@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小H的生活分享 · 粤ICP备2026130309号-2</title>
+<meta name="description" content="小H的生活分享 · 记录日常、随手拍、折腾笔记与碎碎念。备案号：粤ICP备2026130309号-2">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #14161a;
+    --ink-soft: #5b6270;
+    --line: rgba(20, 22, 26, .10);
+    --bg: #fbfaf8;
+    --card: #ffffff;
+    --accent: #ff5a3c;
+    --accent-2: #ffb03a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* 背景光斑 */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .45;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::before {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, #ffd9c9 0%, transparent 70%);
+    top: -180px; right: -120px;
+  }
+  body::after {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, #ffe9b8 0%, transparent 70%);
+    bottom: -160px; left: -140px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── 顶部 ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .02em;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(255, 90, 60, .12);
+  }
+  .tag {
+    font-size: 12px;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 12px;
+    background: rgba(255,255,255,.6);
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── 主体 ── */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 0 40px;
+  }
+
+  h1 {
+    font-size: clamp(34px, 7vw, 62px);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    margin-bottom: 20px;
+  }
+  h1 .grad {
+    background: linear-gradient(100deg, var(--accent) 0%, var(--accent-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lede {
+    font-size: clamp(15px, 2.2vw, 17px);
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin-bottom: 44px;
+  }
+
+  /* ── 高亮备案号（重点）── */
+  .icp {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 22px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 55%, #ff8a5c 100%);
+    box-shadow: 0 18px 44px -18px rgba(255, 90, 60, .55);
+    transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s;
+  }
+  .icp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 56px -18px rgba(255, 90, 60, .65);
+  }
+  .icp-inner {
+    background: #fffdfb;
+    border-radius: 20px;
+    padding: 30px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .icp-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .icp-num {
+    font-size: clamp(24px, 5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -.01em;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .icp-note {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+  }
+  .icp-badge {
+    flex-shrink: 0;
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    font-size: 26px;
+    box-shadow: 0 10px 24px -8px rgba(255, 90, 60, .7);
+  }
+
+  /* ── 卡片区 ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 44px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 90, 60, .35);
+    box-shadow: 0 12px 30px -16px rgba(20, 22, 26, .28);
+  }
+  .card .ico { font-size: 20px; margin-bottom: 10px; display: block; }
+  .card h2 { font-size: 15px; font-weight: 700; margin-bottom: 5px; letter-spacing: -.01em; }
+  .card p { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── 页脚 ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 22px 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    position: relative;
+    z-index: 1;
+  }
+  footer a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+  footer .f-icp { font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 560px) {
+    .icp-inner { padding: 24px 22px; }
+    .icp-badge { width: 52px; height: 52px; font-size: 22px; }
+    main { padding: 40px 0 32px; }
+    .lede { margin-bottom: 34px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><span class="dot"></span>小H的生活分享</div>
+      <div class="tag">个人主页 · 已备案</div>
+    </header>
+
+    <main>
+      <h1>生活很琐碎，<br>但<span class="grad">值得被记下来</span>。</h1>
+      <p class="lede">
+        这里是小H的小小角落 —— 记录日常、随手拍、折腾笔记，还有一些没什么用但很快乐的事。
+      </p>
+
+      <a class="icp" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+        <div class="icp-inner">
+          <div>
+            <div class="icp-label">网站备案号</div>
+            <div class="icp-num">粤ICP备2026130309号-2</div>
+            <div class="icp-note">工业和信息化部 ICP/IP地址/域名信息备案管理系统</div>
+          </div>
+          <div class="icp-badge">✓</div>
+        </div>
+      </a>
+
+      <div class="grid">
+        <div class="card">
+          <span class="ico">🌿</span>
+          <h2>日常随笔</h2>
+          <p>今天吃了什么、去了哪儿、想到了什么。</p>
+        </div>
+        <div class="card">
+          <span class="ico">📷</span>
+          <h2>随手拍</h2>
+          <p>光线刚刚好的那一秒，按下了快门。</p>
+        </div>
+        <div class="card">
+          <span class="ico">🛠️</span>
+          <h2>折腾笔记</h2>
+          <p>踩过的坑、修好的 bug、装好的机器。</p>
+        </div>
+        <div class="card">
+          <span class="ico">☕</span>
+          <h2>碎碎念</h2>
+          <p>没什么用，但很想说出来的那些话。</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div>© 2026 小H的生活分享</div>
+    <div class="f-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026130309号-2</a>
+    </div>
+  </footer>
+</body>
+</html>
