@@ -133,7 +133,7 @@
   .icp-bar {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
     margin-top: 28px;
     padding: 13px 18px;
     background: var(--card);
@@ -144,14 +144,18 @@
     transition: border-color .2s ease;
   }
   .icp-bar:hover { border-color: rgba(255, 90, 60, .4); }
-  .icp-bar .lbl {
+  .icp-ico {
     flex-shrink: 0;
-    font-size: 11px;
+    width: 17px; height: 17px;
+    border-radius: 50%;
+    background: #1a6ae0;
+    color: #fff;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: .14em;
-    color: var(--accent);
-    padding-right: 14px;
-    border-right: 1px solid var(--line);
+    line-height: 1;
+    letter-spacing: 0;
+    display: grid;
+    place-items: center;
   }
   .icp-bar .num {
     font-size: 16px;
@@ -211,10 +215,18 @@
   }
   footer a:hover { color: var(--accent); border-color: var(--accent); }
   footer .f-icp { font-variant-numeric: tabular-nums; }
+  footer .f-icp a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  footer .icp-ico {
+    width: 13px; height: 13px;
+    font-size: 8.5px;
+  }
 
   @media (max-width: 560px) {
-    .icp-bar { flex-wrap: wrap; gap: 8px 12px; padding: 12px 14px; }
-    .icp-bar .lbl { border-right: none; padding-right: 0; }
+    .icp-bar { flex-wrap: wrap; gap: 8px 10px; padding: 12px 14px; }
     .icp-bar .go { display: none; }
     main { padding: 40px 0 32px; }
     .lede { margin-bottom: 26px; }
@@ -258,7 +270,7 @@
       </div>
 
       <a class="icp-bar" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-        <span class="lbl">备案</span>
+        <span class="icp-ico" aria-hidden="true">备</span>
         <span class="num">粤ICP备2026130309号-2</span>
         <span class="go">工信部备案系统 ↗</span>
       </a>
@@ -268,7 +280,9 @@
   <footer>
     <div>© 2026 小H的生活分享</div>
     <div class="f-icp">
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026130309号-2</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+        <span class="icp-ico" aria-hidden="true">备</span>粤ICP备2026130309号-2
+      </a>
     </div>
   </footer>
 </body>
